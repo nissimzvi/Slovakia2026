@@ -1,0 +1,10 @@
+{
+  "name":"סלובקיה ובודפשט 2026",
+  "short_name":"Slovakia 2026",
+  "start_url":"./",
+  "display":"standalone",
+  "background_color":"#f3f7fa",
+  "theme_color":"#123f63",
+  "lang":"he",
+  "dir":"rtl"
+}

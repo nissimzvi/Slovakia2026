@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#123f63" />
+  <title>סלובקיה ובודפשט 2026</title>
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="preconnect" href="https://unpkg.com" />
+  <link rel="preconnect" href="https://tile.openstreetmap.org" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content shell">
+      <div class="eyebrow">הטיול המשפחתי שלנו</div>
+      <h1>סלובקיה ובודפשט 2026</h1>
+      <p>22–29 בספטמבר 2026 · 4 מבוגרים · רכב שכור</p>
+      <div class="hero-chips">
+        <span>🏨 Hotel International</span>
+        <span>🏙️ La Prima Budapest</span>
+        <span>🗺️ מפות יומיות</span>
+        <span>🚗 ניווט בלחיצה</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="shell app-shell">
+    <section class="summary-grid" aria-label="תקציר">
+      <article class="summary-card"><b>8 ימים</b><span>מבודפשט לטטרה וחזרה</span></article>
+      <article class="summary-card"><b>2 מדינות</b><span>הונגריה וסלובקיה</span></article>
+      <article class="summary-card"><b>4 לילות</b><span>ב־Hotel International</span></article>
+      <article class="summary-card"><b>מסלול גמיש</b><span>חלופות לפי מזג האוויר</span></article>
+    </section>
+
+    <section class="map-card">
+      <div class="section-heading">
+        <div>
+          <div class="eyebrow dark">מפת הטיול</div>
+          <h2>כל המסלול במבט אחד</h2>
+        </div>
+        <button id="fitAll" class="ghost-btn">הצג הכול</button>
+      </div>
+      <div id="overviewMap" class="map overview-map" aria-label="מפה כללית"></div>
+      <div class="map-note">המפה דורשת חיבור לאינטרנט. לחיצה על נקודה מציגה את שם המקום והיום.</div>
+    </section>
+
+    <section class="day-nav-wrap">
+      <div class="section-heading compact">
+        <div>
+          <div class="eyebrow dark">בחר יום</div>
+          <h2>מסלול יומי</h2>
+        </div>
+      </div>
+      <div id="dayNav" class="day-nav" role="tablist"></div>
+    </section>
+
+    <section id="dayPanel" class="day-panel" aria-live="polite"></section>
+
+    <section class="extras-card">
+      <div class="section-heading compact">
+        <div>
+          <div class="eyebrow dark">אפשרויות גיבוי</div>
+          <h2>אם נשאר זמן או משתנים התנאים</h2>
+        </div>
+      </div>
+      <div class="extras-grid">
+        <article>
+          <span class="extra-icon">🛷</span>
+          <h3>Tatrabob</h3>
+          <p>מגלשת הרים בטטרנסקה לומניצה. מתאימה כהשלמה קצרה באחד הימים, בכפוף לשעות פתיחה ומזג האוויר.</p>
+          <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Tatrabob%20Tatranska%20Lomnica">פתח במפה</a>
+        </article>
+        <article>
+          <span class="extra-icon">🥾</span>
+          <h3>Jánošíkove Diery</h3>
+          <p>נקיק נוסף עם גשרים וסולמות באזור Terchová. אופציה ליום נפרד בלבד, כדי לא להעמיס על יום המעבר לבודפשט.</p>
+          <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Janosikove%20Diery">פתח במפה</a>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell">נבנה עבור ניסים, אלעד, קרן ומאי · ספטמבר 2026</div>
+  </footer>
+
+  <noscript>יש לאפשר JavaScript כדי להציג את המפות והמסלולים.</noscript>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+  <script src="app.js"></script>
+</body>
+</html>
