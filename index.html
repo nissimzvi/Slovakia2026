@@ -3,92 +3,285 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#123f63" />
-  <title>סלובקיה ובודפשט 2026</title>
-  <link rel="manifest" href="manifest.webmanifest" />
+  <meta name="theme-color" content="#0f4c81" />
+  <meta name="description" content="מסלול טיול אישי לסלובקיה ובודפשט, 22–29 בספטמבר 2026" />
   <link rel="preconnect" href="https://unpkg.com" />
-  <link rel="preconnect" href="https://tile.openstreetmap.org" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
-  <link rel="stylesheet" href="styles.css" />
+  <style>
+:root{
+  --navy:#0d3557;
+  --blue:#0f5b8f;
+  --sky:#eaf5fb;
+  --ink:#183246;
+  --muted:#6d7d88;
+  --cream:#fffaf0;
+  --card:#ffffff;
+  --shadow:0 12px 34px rgba(13,53,87,.14);
+  --radius:22px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,"Noto Sans Hebrew",sans-serif;color:var(--ink);background:linear-gradient(#f5fbff,#fff 35%);line-height:1.55}
+a{color:inherit}
+.hero{position:relative;min-height:315px;background:linear-gradient(135deg,#123d62,#1578a5 55%,#4ea5bd);display:flex;align-items:flex-end;overflow:hidden}
+.hero:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 15% 20%,rgba(255,255,255,.25),transparent 26%),radial-gradient(circle at 85% 10%,rgba(255,255,255,.16),transparent 22%),linear-gradient(to top,rgba(3,22,39,.5),transparent 60%)}
+.hero:after{content:"";position:absolute;left:-10%;right:-10%;bottom:-86px;height:180px;background:#f5fbff;border-radius:50% 50% 0 0/100% 100% 0 0}
+.hero-content{position:relative;z-index:2;width:min(1120px,92%);margin:0 auto 76px;color:white;text-align:right}
+.eyebrow{font-weight:800;letter-spacing:.03em;opacity:.9}
+h1{font-size:clamp(2.15rem,6vw,4.3rem);margin:.12em 0 .05em;line-height:1.02}
+.hero p{font-size:clamp(1rem,2.4vw,1.3rem);margin:.3rem 0 1.2rem;opacity:.94}
+.hero-pills{display:flex;gap:10px;flex-wrap:wrap}.hero-pills span{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.22);backdrop-filter:blur(8px);padding:8px 13px;border-radius:999px;font-size:.92rem}
+.day-tabs{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);border-bottom:1px solid #dfeaf0;display:flex;gap:8px;overflow-x:auto;padding:10px max(4vw,16px);scrollbar-width:none}.day-tabs::-webkit-scrollbar{display:none}
+.day-tab{flex:0 0 auto;border:2px solid var(--tab-border,#bfd3de);background:var(--tab-bg,#edf5f8);color:#183246;border-radius:16px;padding:9px 14px;font-weight:900;cursor:pointer;transition:.2s;box-shadow:0 2px 8px rgba(24,50,70,.06)}.day-tab:hover{transform:translateY(-1px);filter:brightness(.985)}.day-tab.active{background:var(--tab-bg,#edf5f8);color:#102c40;border-color:var(--tab-color,#0f5b8f);box-shadow:0 5px 16px color-mix(in srgb,var(--tab-color,#0f5b8f) 22%,transparent);outline:2px solid color-mix(in srgb,var(--tab-color,#0f5b8f) 18%,transparent);outline-offset:1px}
+main{width:min(1180px,94%);margin:0 auto;padding:24px 0 60px}
+section{margin:22px 0 42px}.section-title-wrap{display:flex;align-items:end;justify-content:space-between;gap:14px;margin-bottom:14px}.kicker{font-size:.82rem;color:#50809d;font-weight:900;letter-spacing:.08em;text-transform:uppercase}h2{margin:.1rem 0 0;font-size:clamp(1.55rem,4vw,2.4rem)}
+.ghost-btn{border:1px solid #bfd3de;background:#fff;color:#315b73;border-radius:12px;padding:9px 13px;font-weight:800;cursor:pointer}
+.map{border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;border:5px solid #fff}.map-overview{height:430px}.map-day{height:360px}
+.legend{display:flex;flex-wrap:wrap;gap:8px;margin-top:13px}.legend-item{display:flex;align-items:center;gap:7px;background:#fff;border:1px solid #e1edf2;border-radius:999px;padding:6px 10px;font-size:.85rem}.legend-dot{width:11px;height:11px;border-radius:50%}
+.day-hero-card{--day:#0f5b8f;background:linear-gradient(135deg,color-mix(in srgb,var(--day) 92%,#0c2e48),var(--day));color:white;border-radius:26px;padding:22px;box-shadow:var(--shadow);position:relative;overflow:hidden}.day-hero-card:after{content:"";position:absolute;width:180px;height:180px;border:30px solid rgba(255,255,255,.09);border-radius:50%;left:-55px;top:-70px}.day-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.16);padding:7px 12px;border-radius:999px;font-weight:900}.day-hero-card h2{font-size:clamp(1.65rem,4vw,2.7rem);margin:.65rem 0 .2rem}.day-sub{font-size:1.04rem;opacity:.94;margin:0}.day-meta{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}.day-meta span{background:rgba(255,255,255,.13);padding:7px 10px;border-radius:12px}
+.route-strip{display:flex;align-items:flex-start;gap:0;overflow-x:auto;padding:18px 6px 10px;margin:12px 0 20px;scrollbar-width:none}.route-strip::-webkit-scrollbar{display:none}.route-stop{min-width:120px;text-align:center;position:relative}.route-stop:not(:last-child):after{content:"";position:absolute;top:18px;left:-50%;right:50%;height:4px;background:var(--day);z-index:0}.route-num{width:38px;height:38px;border-radius:50%;background:var(--day);color:#fff;font-weight:900;display:grid;place-items:center;margin:0 auto 7px;position:relative;z-index:1;box-shadow:0 4px 12px color-mix(in srgb,var(--day) 35%,transparent)}.route-name{font-size:.85rem;font-weight:800;line-height:1.25}
+.day-layout{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(320px,.85fr);gap:20px;align-items:start}.timeline{display:flex;flex-direction:column;gap:13px}.stop-card{display:grid;grid-template-columns:74px 1fr;gap:14px;background:#fff;border:1px solid #e0ebf0;border-radius:18px;padding:15px;box-shadow:0 7px 20px rgba(20,57,80,.07);position:relative}.stop-card:before{content:"";position:absolute;right:0;top:12px;bottom:12px;width:5px;background:var(--day);border-radius:5px 0 0 5px}.time{font-weight:900;font-size:1.05rem;color:var(--day)}.stop-card h3{margin:0 0 4px;font-size:1.13rem}.stop-card p{margin:.25rem 0;color:#425d6e}.stop-meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:9px}.tag{font-size:.78rem;background:#eef6f8;border:1px solid #dcebef;border-radius:999px;padding:4px 8px;color:#466879}.waze-line{font-size:.82rem;color:#71838e;margin-top:5px}.btn-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.small-btn{display:inline-block;text-decoration:none;background:var(--day,#0f5b8f);color:white;padding:7px 11px;border-radius:10px;font-weight:800;font-size:.82rem}.small-btn.secondary{background:#eaf3f7;color:#315a71;border:1px solid #cfe1e9}
+.side-stack{display:flex;flex-direction:column;gap:15px}.panel{background:#fff;border:1px solid #e0ebf0;border-radius:18px;padding:17px;box-shadow:0 7px 20px rgba(20,57,80,.07)}.panel h3{margin:0 0 8px}.cost-panel{background:linear-gradient(135deg,#fff8df,#fff);border-color:#efd98a}.cost-value{font-size:1.5rem;font-weight:950;color:#a06a00}.notes-list{margin:0;padding-right:1.1rem}.notes-list li{margin:.35rem 0}
+.extras-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.extra-card{display:flex;gap:15px;background:#fff;border:1px solid #e0ebf0;border-radius:18px;padding:18px;box-shadow:0 7px 20px rgba(20,57,80,.07)}.extra-icon{font-size:2rem}.extra-card h3{margin:0 0 5px}.extra-card p{margin:0;color:#506b7a}.mini-meta{font-weight:800;margin-top:8px}
+footer{background:#0d3557;color:#dceaf2;padding:22px max(4vw,20px);text-align:center}
+.leaflet-popup-content{direction:rtl;text-align:right}.marker-emoji{font-size:20px;filter:drop-shadow(0 2px 2px rgba(0,0,0,.25))}
+@media(max-width:850px){.day-layout{grid-template-columns:1fr}.map-overview{height:350px}.map-day{height:320px}.extras-grid{grid-template-columns:1fr}}
+@media(max-width:520px){main{width:96%}.hero{min-height:290px}.hero-content{margin-bottom:70px}.stop-card{grid-template-columns:58px 1fr;padding:13px}.route-stop{min-width:105px}.map-overview{height:310px}.map-day{height:300px}.section-title-wrap{align-items:center}.day-hero-card{padding:18px}}
+
+  </style>
+  <title>מסלול הונגריה וסלובקיה 2026</title>
+  <meta property="og:title" content="מסלול הונגריה וסלובקיה 2026" />
+  <meta property="og:description" content="מסלול יומי, מפות, ניווט ועלויות · 22–29 בספטמבר 2026" />
+  <meta property="og:type" content="website" />
 </head>
 <body>
+  <div id="offlineNote" style="display:none;position:fixed;z-index:9999;left:12px;right:12px;bottom:12px;background:#fff3cd;border:1px solid #f0ad4e;padding:10px 14px;border-radius:12px;font-family:Arial;direction:rtl">המפה דורשת חיבור לאינטרנט. יתר פרטי המסלול והכפתורים זמינים גם בלי המפה.</div>
   <header class="hero">
     <div class="hero-overlay"></div>
-    <div class="hero-content shell">
-      <div class="eyebrow">הטיול המשפחתי שלנו</div>
-      <h1>סלובקיה ובודפשט 2026</h1>
+    <div class="hero-content">
+      <div class="eyebrow">🏔️ המסע שלנו</div>
+      <h1>הונגריה וסלובקיה 2026</h1>
       <p>22–29 בספטמבר 2026 · 4 מבוגרים · רכב שכור</p>
-      <div class="hero-chips">
+      <div class="hero-pills">
         <span>🏨 Hotel International</span>
-        <span>🏙️ La Prima Budapest</span>
-        <span>🗺️ מפות יומיות</span>
-        <span>🚗 ניווט בלחיצה</span>
+        <span>🏙️ La Prima Hotel</span>
+        <span id="countdown">⏳ מחשב זמן לטיול…</span>
       </div>
     </div>
   </header>
 
-  <main class="shell app-shell">
-    <section class="summary-grid" aria-label="תקציר">
-      <article class="summary-card"><b>8 ימים</b><span>מבודפשט לטטרה וחזרה</span></article>
-      <article class="summary-card"><b>2 מדינות</b><span>הונגריה וסלובקיה</span></article>
-      <article class="summary-card"><b>4 לילות</b><span>ב־Hotel International</span></article>
-      <article class="summary-card"><b>מסלול גמיש</b><span>חלופות לפי מזג האוויר</span></article>
-    </section>
+  <nav class="day-tabs" id="dayTabs" aria-label="בחירת יום"></nav>
 
-    <section class="map-card">
-      <div class="section-heading">
+  <main>
+    <section style="max-width:1100px;margin:18px auto 0;padding:0 16px"><div style="background:#e9f5ff;border:1px solid #b8ddf4;border-radius:16px;padding:14px 16px;direction:rtl"><strong>איך משתמשים:</strong> פותחים את הקובץ הזה ב-Chrome או Edge. לוחצים על יום, רואים את הנקודות והמפה, ולוחצים על Google Maps או Waze לניווט.</div></section>
+    <section class="overview-section">
+      <div class="section-title-wrap">
         <div>
-          <div class="eyebrow dark">מפת הטיול</div>
+          <div class="kicker">מפת הטיול</div>
           <h2>כל המסלול במבט אחד</h2>
         </div>
-        <button id="fitAll" class="ghost-btn">הצג הכול</button>
+        <button class="ghost-btn" id="fitAll">🗺️ הצג הכול</button>
       </div>
-      <div id="overviewMap" class="map overview-map" aria-label="מפה כללית"></div>
-      <div class="map-note">המפה דורשת חיבור לאינטרנט. לחיצה על נקודה מציגה את שם המקום והיום.</div>
+      <div id="overviewMap" class="map map-overview"></div>
+      <div class="legend" id="legend"></div>
     </section>
 
-    <section class="day-nav-wrap">
-      <div class="section-heading compact">
-        <div>
-          <div class="eyebrow dark">בחר יום</div>
-          <h2>מסלול יומי</h2>
-        </div>
-      </div>
-      <div id="dayNav" class="day-nav" role="tablist"></div>
-    </section>
+    <section id="daySection" class="day-section"></section>
 
-    <section id="dayPanel" class="day-panel" aria-live="polite"></section>
-
-    <section class="extras-card">
-      <div class="section-heading compact">
+    <section class="extras-section">
+      <div class="section-title-wrap">
         <div>
-          <div class="eyebrow dark">אפשרויות גיבוי</div>
-          <h2>אם נשאר זמן או משתנים התנאים</h2>
+          <div class="kicker">אפשרויות נוספות</div>
+          <h2>לשמור בכיס</h2>
         </div>
       </div>
       <div class="extras-grid">
-        <article>
-          <span class="extra-icon">🛷</span>
-          <h3>Tatrabob</h3>
-          <p>מגלשת הרים בטטרנסקה לומניצה. מתאימה כהשלמה קצרה באחד הימים, בכפוף לשעות פתיחה ומזג האוויר.</p>
-          <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Tatrabob%20Tatranska%20Lomnica">פתח במפה</a>
+        <article class="extra-card">
+          <div class="extra-icon">🛷</div>
+          <div>
+            <h3>Tatrabob – Tatranská Lomnica</h3>
+            <p>מגלשת הרים על מסילה עם שליטה אישית במהירות. אפשר לשלב באחד הערבים אם לא הספקתם ביום 25.9.</p>
+            <div class="mini-meta">עלות משוערת ל־4: €45–60</div>
+            <div class="btn-row">
+              <a class="small-btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Tatrabob%20Tatransk%C3%A1%20Lomnica">Google Maps</a>
+              <a class="small-btn secondary" target="_blank" rel="noopener" href="https://www.waze.com/ul?q=Tatrabob%20Tatransk%C3%A1%20Lomnica&navigate=yes">Waze</a>
+            </div>
+          </div>
         </article>
-        <article>
-          <span class="extra-icon">🥾</span>
-          <h3>Jánošíkove Diery</h3>
-          <p>נקיק נוסף עם גשרים וסולמות באזור Terchová. אופציה ליום נפרד בלבד, כדי לא להעמיס על יום המעבר לבודפשט.</p>
-          <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Janosikove%20Diery">פתח במפה</a>
+        <article class="extra-card">
+          <div class="extra-icon">🥾</div>
+          <div>
+            <h3>Jánošíkove Diery / Dolné Diery</h3>
+            <p>נקיק יפה עם גשרים, מפלים וסולמות קלים יחסית. נשמר כהמלצה חלופית, אך אינו חלק מהמסלול הסופי.</p>
+            <div class="btn-row">
+              <a class="small-btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Doln%C3%A9%20Diery">Google Maps</a>
+              <a class="small-btn secondary" target="_blank" rel="noopener" href="https://www.waze.com/ul?q=Doln%C3%A9%20Diery&navigate=yes">Waze</a>
+            </div>
+          </div>
         </article>
       </div>
     </section>
   </main>
 
   <footer>
-    <div class="shell">נבנה עבור ניסים, אלעד, קרן ומאי · ספטמבר 2026</div>
+    <strong>טיפ:</strong> לפתוח את האתר פעם אחת עם אינטרנט לפני הנסיעה. המידע נשמר בדפדפן, אך המפה והניווט דורשים חיבור.<br><small>גרסה סופית: 08.08.2026 · יום 26 כולל Vrbické pleso + Slide Park Priehyba.</small>
   </footer>
 
-  <noscript>יש לאפשר JavaScript כדי להציג את המפות והמסלולים.</noscript>
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
-  <script src="app.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin="" onerror="document.getElementById('offlineNote').style.display='block'"></script>
+  <script>
+const days = [
+  {
+    id:'22-09', date:'22.9.2026', day:'יום ג׳', icon:'✈️', color:'#7b2fa0', title:'נחיתה בבודפשט, מרכז העיר ואיסוף קרן ומאי', sleep:'Airport Hotel Budapest, Vecsés', cost:'0 € (לא כולל אוכל, חניה וקניות)',
+    maps:'https://www.google.com/maps/dir/Budapest+Airport/Airport+Hotel+Budapest/Bazilika+Garazs+Budapest/Budapest+Airport/Airport+Hotel+Budapest',
+    notes:['זהו יום לוגיסטי; אין צורך להספיק את כל בודפשט.','להחנות בחניון מסודר ולא להסתבך עם מדחנים.'],
+    stops:[
+      {time:'12:20',name:'איסוף הרכב',waze:'Klass Wagen Budapest Airport',drive:'שאטל 10–20 דק׳',stay:'45–75 דק׳',what:'ביקורת דרכונים, מזוודות, שאטל ואיסוף הרכב.',note:'לוודא אישור מעבר לסלובקיה, נהג נוסף, מדיניות דלק ווינייטה סלובקית.',lat:47.4399,lng:19.2612,icon:'🚗'},
+      {time:'14:15',name:'Airport Hotel Budapest',waze:'Airport Hotel Budapest',drive:'5–10 דק׳',stay:'30–45 דק׳',what:'צ׳ק־אין, השארת מזוודות והתרעננות.',note:'המלון קרוב לשדה ולחברת ההשכרה.',lat:47.4196,lng:19.2588,icon:'🏨'},
+      {time:'15:15',name:'מרכז בודפשט',waze:'Bazilika Garázs, Budapest',drive:'30–45 דק׳',stay:'4–5 ש׳',what:'טיול באזור הבזיליקה, הדנובה, ואצי וארוחת ערב.',note:'להחנות בחניון מרכזי מסודר.',lat:47.5009,lng:19.0539,icon:'🏛️'},
+      {time:'21:30',name:'Budapest Airport',waze:'Budapest Airport Terminal 2',drive:'30–40 דק׳',stay:'60–90 דק׳',what:'נסיעה לשדה ואיסוף קרן ומאי סביב 22:00.',note:'לעקוב אחר שעת הנחיתה בפועל.',lat:47.4399,lng:19.2612,icon:'✈️'},
+      {time:'23:15',name:'Airport Hotel Budapest',waze:'Airport Hotel Budapest',drive:'5–10 דק׳',stay:'לינה',what:'חזרה למלון ולינה.',note:'להכין מים וכריכים ליציאה למחרת.',lat:47.4196,lng:19.2588,icon:'🛏️'}
+    ]
+  },
+  {
+    id:'23-09', date:'23.9.2026', day:'יום ד׳', icon:'🚙', color:'#2d8b3d', title:'דרך נופית לטטרה הגבוהים: Hollókő, ויאדוקט Telgárt והגעה למלון', sleep:'Hotel International, Veľká Lomnica', cost:'0 € (העצירות חינמיות; לא כולל אוכל וחניה)',
+    maps:'https://www.google.com/maps/dir/Airport+Hotel+Budapest/Holl%C3%B3k%C5%91+%C3%93falu/Chmaro%C5%A1sk%C3%BD+viadukt,+Telg%C3%A1rt/Hotel+International,+Ve%C4%BEk%C3%A1+Lomnica',
+    notes:['יום הנסיעה כולל שתי עצירות צילום מיוחדות, אך נשאר בקצב נוח.','המטרה להגיע למלון סביב 15:30–16:00 וליהנות מהספא ומארוחת הערב.'],
+    stops:[
+      {time:'08:30',name:'Hollókő Ófalu',waze:'Hollókő Ófalu, Hungary',drive:'1:20–1:35 ש׳',stay:'25–30 דק׳',what:'כפר מסורתי ציורי, בתים לבנים, רחוב עתיק ותצפיות.',note:'עצירת צילום וקפה קצרה בלבד.',lat:47.9975,lng:19.5914,icon:'🏘️'},
+      {time:'10:00',name:'נסיעה לכיוון Telgárt',waze:'Chmarošský viadukt, Telgárt',drive:'2:35–2:55 ש׳',stay:'עצירת התרעננות',what:'נסיעה נופית צפונה דרך אזורים כפריים והרריים.',note:'לוודא וינייטה סלובקית ומעבר גבול לרכב.',lat:48.8450,lng:20.1870,icon:'🛣️'},
+      {time:'13:15',name:'Chmarošský viadukt',waze:'Chmarošský viadukt, Telgárt',drive:'—',stay:'20–25 דק׳',what:'גשר רכבת אבן מרשים בלב נוף הררי ירוק.',note:'עצירת צילום קצרה, ללא מסלול ארוך.',lat:48.8485,lng:20.1831,icon:'🌉'},
+      {time:'15:45',name:'Hotel International',waze:'Hotel International, Veľká Lomnica',drive:'1:35–1:55 ש׳',stay:'ערב',what:'צ׳ק־אין, ספא, בריכה וארוחת ערב.',note:'לבקש קומה גבוהה, מרפסת ונוף להרים.',lat:49.1163,lng:20.3482,icon:'🏨'}
+    ]
+  },
+  {
+    id:'24-09', date:'24.9.2026', day:'יום ה׳', icon:'🌲', color:'#e67e16', title:'צפון הטטרה: Bachledka, Ždiar ותצפיות', sleep:'Hotel International, Veľká Lomnica', cost:'כ־120 € עבור Bachledka והרכבל',
+    maps:'https://www.google.com/maps/dir/Hotel+International,+Ve%C4%BEk%C3%A1+Lomnica/Bachledka+Ski+and+Sun/Zdiar/Obria+lavicka+Zdiar/Strednica+Zdiar/Hotel+International,+Ve%C4%BEk%C3%A1+Lomnica',
+    notes:['אין מגלשה ביום זה; שומרים את Tatrabob ליום שאחרי Suchá Belá.','Obria lavička מחליפה את המערה ונותנת יום מגוון יותר.'],
+    stops:[
+      {time:'08:30',name:'Bachledka Ski & Sun',waze:'Bachledka Ski & Sun',drive:'30–35 דק׳',stay:'2:00–2:30 ש׳',what:'רכבל, שביל עץ מעל צמרות היער ומגדל תצפית פנורמי.',note:'להזמין מראש; תלוי ברוח ובמזג האוויר.',lat:49.2727,lng:20.3124,icon:'🌲'},
+      {time:'11:30',name:'Ždiar',waze:'Ždiar, Slovakia',drive:'15–20 דק׳',stay:'45–60 דק׳',what:'כפר הררי ציורי, בתי עץ, קפה וצילומים.',note:'אין צורך במסלול ארוך בתוך הכפר.',lat:49.2717,lng:20.2626,icon:'🏡'},
+      {time:'12:45',name:'Obria lavička',waze:'Obria lavička Ždiar',drive:'5–10 דק׳',stay:'20–30 דק׳',what:'ספסל ענק מול הנוף ונקודת צילום מיוחדת.',note:'עצירה קצרה ונוחה.',lat:49.2744,lng:20.2470,icon:'📸'},
+      {time:'13:30',name:'Strednica Viewpoint',waze:'Strednica Ždiar',drive:'5–10 דק׳',stay:'30–45 דק׳',what:'תצפית פתוחה על רכס Belianske Tatras.',note:'כמעט ללא הליכה.',lat:49.2757,lng:20.2280,icon:'🔭'},
+      {time:'14:30',name:'ארוחת צהריים באזור Ždiar',waze:'Ždiar, Slovakia',drive:'5–10 דק׳',stay:'60 דק׳',what:'ארוחה רגועה וקפה.',note:'אפשר להזיז לפי עומס ומזג אוויר.',lat:49.2717,lng:20.2626,icon:'☕'},
+      {time:'16:00',name:'Hotel International',waze:'Hotel International, Veľká Lomnica',drive:'30–35 דק׳',stay:'ערב',what:'חזרה לספא ולארוחת ערב.',note:'Belianska Cave נשארת חלופת גשם בלבד.',lat:49.1163,lng:20.3482,icon:'🏨'}
+    ]
+  },
+  {
+    id:'25-09', date:'25.9.2026', day:'יום ו׳', icon:'🥾', color:'#b21f2d', title:'Suchá Belá – נקיק הסולמות, ולאחריו Tatrabob', sleep:'Hotel International, Veľká Lomnica', cost:'כ־60–75 € עבור Suchá Belá ו־Tatrabob',
+    maps:'https://www.google.com/maps/dir/Hotel+International,+Ve%C4%BEk%C3%A1+Lomnica/Podlesok/Sucha+Bela/Tatrabob+Tatranska+Lomnica/Hotel+International,+Ve%C4%BEk%C3%A1+Lomnica',
+    notes:['Suchá Belá הוא אחד משיאי הטיול; אין להוסיף אתר משמעותי נוסף.','אם המסלול מתארך או המגלשה סגורה, חוזרים ישירות למלון.'],
+    stops:[
+      {time:'07:45',name:'Podlesok – Suchá Belá',waze:'Podlesok, Slovenský raj',drive:'45–60 דק׳',stay:'20–30 דק׳',what:'נסיעה לנקודת ההתחלה וחניה.',note:'להגיע מוקדם לפני העומס על הסולמות.',lat:48.9616,lng:20.3849,icon:'🅿️'},
+      {time:'09:00',name:'Suchá Belá Gorge',waze:'Suchá Belá, Podlesok',drive:'—',stay:'4:00–5:00 ש׳',what:'נקיק צר עם מפלים, גשרי עץ וסולמות מתכת גבוהים.',note:'מסלול חד־כיווני; נעלי הליכה חובה ולא בגשם חזק.',lat:48.9490,lng:20.3870,icon:'🪜'},
+      {time:'14:00',name:'ארוחת צהריים ב־Podlesok',waze:'Podlesok',drive:'—',stay:'45–60 דק׳',what:'ארוחה ומנוחה לאחר המסלול.',note:'לא להתעכב כדי להספיק את המגלשה.',lat:48.9616,lng:20.3849,icon:'🍽️'},
+      {time:'15:15',name:'Tatrabob – Tatranská Lomnica',waze:'Tatrabob Tatranská Lomnica',drive:'45–55 דק׳',stay:'45–60 דק׳',what:'מגלשת הרים על מסילה עם שליטה אישית במהירות.',note:'לבדוק שעות פעילות ומזג אוויר סמוך ליום.',lat:49.1667,lng:20.2810,icon:'🛷'},
+      {time:'16:30',name:'Hotel International',waze:'Hotel International',drive:'10–15 דק׳',stay:'ערב',what:'חזרה למלון, ספא וארוחת ערב.',note:'המגלשה קרובה למלון ולכן משתלבת היטב.',lat:49.1163,lng:20.3482,icon:'🏨'}
+    ]
+  },
+  {
+    id:'26-09', date:'26.9.2026', day:'שבת', icon:'🚠', color:'#007b9b', title:'הטטרה הנמוכים: Jasná, Vrbické pleso, Slide Park Priehyba, Chopok, מערת החירות, Liptovská Mara ו־Hrabovo כאפשרות', sleep:'Hotel International, Veľká Lomnica', cost:'כ־180 € במסלול הבסיסי; כ־270–290 € אם מוסיפים פעילויות בתשלום ב־Hrabovo',
+    maps:'https://www.google.com/maps/dir/Hotel+International,+Ve%C4%BEk%C3%A1+Lomnica/Jasn%C3%A1+Biela+P%C3%BA%C5%A5/Vrbick%C3%A9+pleso/Priehyba,+Jasn%C3%A1/Chopok/Dem%C3%A4novsk%C3%A1+jasky%C5%88a+slobody/Liptovsk%C3%A1+Mara,+Liptovsk%C3%BD+Trnovec/Hrabovo,+Ru%C5%BEomberok/Hotel+International,+Ve%C4%BEk%C3%A1+Lomnica',
+    notes:['Vrbické pleso ו־Slide Park Priehyba משתלבים במסלול העלייה ל־Chopok בלי נסיעה מיותרת.','Slide Park Priehyba חדש בקיץ 2026; לבדוק סמוך לנסיעה שהוא פעיל.','Hrabovo אופציונלי בלבד: מחליטים אחרי Liptovská Mara לפי השעה, מזג האוויר והכוח.'],
+    stops:[
+      {time:'07:30',name:'Jasná – Biela Púť',waze:'Jasná Biela Púť',drive:'1:00–1:20 ש׳',stay:'20 דק׳',what:'הגעה למרכז הרכבלים, חניה והתארגנות.',note:'לצאת מוקדם ולבדוק בבוקר רוח, ראות ופעילות רכבלים.',lat:48.9719,lng:19.5847,icon:'🚠'},
+      {time:'08:50',name:'Vrbické pleso',waze:'Vrbické pleso, Jasná',drive:'5–10 דק׳ / הליכה',stay:'30–40 דק׳',what:'סיבוב קצר סביב אגם הררי בתוך היער, תצפיות וצילומים.',note:'האגם ממש ליד Jasná ולכן זו תוספת יפה בלי נסיעה מיותרת.',lat:48.9706,lng:19.5797,icon:'🌲'},
+      {time:'09:35',name:'Slide Park Jasná – Priehyba',waze:'Priehyba, Jasná',drive:'רכבל A6',stay:'30–45 דק׳',what:'פארק המגלשות החדש ב־Priehyba עם 7 מגלשות יבשות; עצירה בדרך ל־Chopok.',note:'הכניסה לפארק חינם; הרכבל לפי הכרטיס. לבדוק סמוך לנסיעה שהפעילות פתוחה.',lat:48.9587,lng:19.5867,icon:'🛝'},
+      {time:'10:30',name:'Chopok',waze:'Chopok',drive:'רכבלים',stay:'2:00–2:30 ש׳',what:'המשך ברכבל לפסגה בגובה כ־2,024 מ׳, תצפית פנורמית וקפה בפסגה.',note:'להצטייד במעיל; לשים לב לזמן כדי להספיק למערה.',lat:48.9435,lng:19.5913,icon:'🏔️'},
+      {time:'13:15',name:'Demänovská Cave of Liberty',waze:'Demänovská jaskyňa slobody',drive:'15–20 דק׳',stay:'1:30–2:00 ש׳',what:'מערת נטיפים גדולה עם אולמות, נהר תת־קרקעי וסיור מודרך.',note:'להגיע לפני שעת הסיור; יש מדרגות והטמפרטורה נמוכה.',lat:49.0161,lng:19.5810,icon:'🕳️'},
+      {time:'15:30',name:'Liptovská Mara',waze:'Liptovská Mara – Liptovský Trnovec',drive:'25–35 דק׳',stay:'45–60 דק׳',what:'אגם גדול, מרינה, תצפיות וקפה לקראת אחר הצהריים.',note:'כאן מחליטים לפי השעה אם ממשיכים ל־Hrabovo.',lat:49.1060,lng:19.5350,icon:'🌊'},
+      {time:'16:50',name:'Hrabovo / Malinô Brdo – אופציונלי',waze:'Hrabovo, Ružomberok',drive:'35–45 דק׳',stay:'1:00–1:30 ש׳',what:'אגם נופש יפה; אם הזמן והפעילות מאפשרים: רכבל ל־Malinô Brdo, Mountain Carts או Tarzania.',note:'אופציונלי בלבד. בסוף ספטמבר לבדוק שעות פעילות מראש; אם אין זמן או שהמתקנים סגורים חוזרים למלון.',lat:49.0541,lng:19.2691,icon:'🎢'},
+      {time:'18:30',name:'Hotel International',waze:'Hotel International, Veľká Lomnica',drive:'1:00–1:25 ש׳',stay:'ערב',what:'חזרה למלון, ספא וארוחת ערב.',note:'אם מוותרים על Hrabovo חוזרים מוקדם יותר מ־Liptovská Mara.',lat:49.1163,lng:20.3482,icon:'🏨'}
+    ]
+  },
+  {
+    id:'27-09', date:'27.9.2026', day:'יום א׳', icon:'🚗', color:'#088c8b', title:'הטטרה הנמוכים, בנסקה ביסטריצה, תצפית עיקול הדנובה ואאוטלט בדרך לבודפשט', sleep:'La Prima Hotel Budapest', cost:'0 € (לא כולל קניות, אוכל וחניה)',
+    maps:'https://www.google.com/maps/dir/Hotel+International,+Ve%C4%BEk%C3%A1+Lomnica/Liptovsk%C3%A1+Mara,+Liptovsk%C3%BD+Trnovec/Donovaly/N%C3%A1mestie+SNP,+Bansk%C3%A1+Bystrica/Zsitvay-kil%C3%A1t%C3%B3,+Visegr%C3%A1d/Premier+Outlet+Budapest/La+Prima+Hotel+Budapest',
+    notes:['יום מעבר מגוון: אגם, מעבר הרים, עיר היסטורית, תצפית עיקול הדנובה וקניות.','אם מתעכבים, מקצרים קודם את Donovaly; תצפית Visegrád היא עצירת הוואו של היום.'],
+    stops:[
+      {time:'07:30',name:'Liptovská Mara',waze:'Liptovská Mara – Liptovský Trnovec',drive:'1:00–1:15 ש׳',stay:'20–30 דק׳',what:'אגם גדול בטטרה הנמוכים, מרינה ותצפיות יפות.',note:'עצירת בוקר קצרה לצילומים וקפה.',lat:49.1060,lng:19.5350,icon:'🌊'},
+      {time:'09:15',name:'Donovaly',waze:'Donovaly, Slovakia',drive:'45–55 דק׳',stay:'20–30 דק׳',what:'מעבר הרים ועיירת נופש עם תצפיות ונוף אלפיני.',note:'עצירת התרעננות בלבד.',lat:48.8780,lng:19.2255,icon:'⛰️'},
+      {time:'10:30',name:'Banská Bystrica',waze:'Námestie SNP, Banská Bystrica',drive:'30–35 דק׳',stay:'1:00–1:15 ש׳',what:'כיכר היסטורית צבעונית, מדרחוב וארוחת צהריים קלה.',note:'לא להיכנס למוזיאונים כדי לשמור זמן.',lat:48.7363,lng:19.1462,icon:'🏛️'},
+      {time:'13:45',name:'Visegrád – תצפית עיקול הדנובה',waze:'Zsitvay-kilátó, Visegrád',drive:'2:30–2:50 ש׳',stay:'25–35 דק׳',what:'תצפית פנורמית מרשימה על עיקול הדנובה והגבעות.',note:'עצירת הוואו של הדרך; ללא סיור ארוך.',lat:47.7938,lng:18.9827,icon:'🔭'},
+      {time:'17:15',name:'Premier Outlet Budapest',waze:'Premier Outlet Budapest',drive:'1:10–1:25 ש׳',stay:'1:15–1:45 ש׳',what:'קניות מרוכזות לפני הכניסה לבודפשט.',note:'לבדוק שעות פתיחה ביום א׳.',lat:47.4602,lng:18.8948,icon:'🛍️'},
+      {time:'19:30',name:'La Prima Hotel Budapest',waze:'La Prima Hotel Budapest',drive:'25–40 דק׳',stay:'ערב',what:'צ׳ק־אין, ארוחת ערב ומנוחה במרכז העיר.',note:'אם מתעכבים, מקצרים קודם את Donovaly.',lat:47.4930,lng:19.0522,icon:'🏨'}
+    ]
+  },
+  {
+    id:'28-09', date:'28.9.2026', day:'יום ב׳', icon:'🏙️', color:'#4f3da6', title:'בודפשט בבוקר, טיסת קרן ומאי והמשך ערב בעיר', sleep:'בודפשט – ניסים ואלעד', cost:'0 € (לא כולל אוכל, שיט או תחבורה מקומית)',
+    maps:'https://www.google.com/maps/dir/Budapest+City+Center/Shoes+on+the+Danube+Bank/St+Stephens+Basilica/Budapest+Airport/Budapest+City+Center',
+    notes:['קרן ומאי טסות ב־15:30.','המשך היום של ניסים ואלעד נשאר גמיש.'],
+    stops:[
+      {time:'08:30',name:'הפרלמנט ונעלי הברזל',waze:'Shoes on the Danube Bank',drive:'הליכה/תחבורה',stay:'1:15–1:30 ש׳',what:'טיילת הדנובה, אנדרטת הנעליים ותצפית לפרלמנט.',note:'אין צורך בסיור פנימי ביום טיסה.',lat:47.5039,lng:19.0448,icon:'👞'},
+      {time:'10:15',name:'בזיליקת סנט אישטוון',waze:'Szent István Bazilika',drive:'15–20 דק׳',stay:'45–60 דק׳',what:'כיכר הבזיליקה, קפה ותצפית אם אין תור.',note:'לשמור זמן לחזרה למלון.',lat:47.5009,lng:19.0539,icon:'⛪'},
+      {time:'11:30',name:'La Prima Hotel – איסוף מזוודות',waze:'La Prima Hotel Budapest',drive:'15–25 דק׳',stay:'30 דק׳',what:'איסוף מזוודות ויציאה לשדה עם קרן ומאי.',note:'לטיסה ב־15:30 להגיע לשדה סביב 12:45–13:00.',lat:47.4930,lng:19.0522,icon:'🧳'},
+      {time:'12:30',name:'Budapest Airport',waze:'Budapest Airport Terminal 2',drive:'30–45 דק׳',stay:'60–75 דק׳',what:'הורדת קרן ומאי בטרמינל.',note:'לבדוק טרמינל וחברת תעופה מראש.',lat:47.4399,lng:19.2612,icon:'✈️'},
+      {time:'14:00',name:'חזרה לבודפשט',waze:'Budapest City Center',drive:'30–45 דק׳',stay:'אחה״צ וערב',what:'ניסים ואלעד חוזרים לעיר: ואצי, הדנובה, ארוחה ושיט לפי כוח.',note:'להשאיר את הרכב בחניון מרכזי.',lat:47.4979,lng:19.0402,icon:'🌆'}
+    ]
+  },
+  {
+    id:'29-09', date:'29.9.2026', day:'יום ג׳', icon:'🛫', color:'#d6387c', title:'בוקר רגוע, החזרת הרכב וטיסה של ניסים ואלעד', sleep:'טיסה חזרה', cost:'0 € (לא כולל דלק וחניה)',
+    maps:'https://www.google.com/maps/dir/Budapest+City+Center/Klass+Wagen+Budapest+Airport/Budapest+Airport',
+    notes:['להשאיר לפחות שעתיים וחצי בטרמינל לאחר החזרת הרכב.','לשמור חוזה השכרה ותמונות הרכב עד סגירת הפיקדון.'],
+    stops:[
+      {time:'07:30',name:'ארוחת בוקר וצ׳ק־אאוט',waze:'La Prima Hotel Budapest',drive:'—',stay:'60–75 דק׳',what:'ארוחת בוקר, אריזה ובדיקת החדר.',note:'לא לתכנן אתר מרוחק ביום הטיסה.',lat:47.4930,lng:19.0522,icon:'☕'},
+      {time:'09:00',name:'Klass Wagen Budapest Airport',waze:'Klass Wagen Budapest Airport',drive:'30–45 דק׳',stay:'60–75 דק׳',what:'תדלוק סמוך, החזרת הרכב ובדיקת החשבון.',note:'לצלם את הרכב והדלק לפני המסירה.',lat:47.4330,lng:19.2450,icon:'🚗'},
+      {time:'10:15',name:'Budapest Airport',waze:'Budapest Airport Terminal 2',drive:'שאטל',stay:'עד הטיסה',what:'שאטל לטרמינל וצ׳ק־אין.',note:'לטיסה ב־13:00 להיות בטרמינל עד 10:15–10:30.',lat:47.4399,lng:19.2612,icon:'🛫'},
+      {time:'13:00',name:'טיסה הביתה',waze:'Budapest Airport',drive:'—',stay:'—',what:'טיסת ניסים ואלעד.',note:'לבדוק את שעת הטיסה הסופית ערב קודם.',lat:47.4399,lng:19.2612,icon:'🏠'}
+    ]
+  }
+];
+
+const overviewMap = L.map('overviewMap',{zoomControl:true}).setView([48.65,19.7],7);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'&copy; OpenStreetMap contributors',maxZoom:19}).addTo(overviewMap);
+const allBounds=[]; const dayLayers=[];
+function markerIcon(emoji,color){return L.divIcon({className:'',html:`<div class="marker-emoji" style="background:${color};width:34px;height:34px;border-radius:50%;display:grid;place-items:center;border:3px solid white">${emoji}</div>`,iconSize:[34,34],iconAnchor:[17,17]});}
+days.forEach(day=>{
+  const latlngs=day.stops.map(s=>[s.lat,s.lng]);
+  const line=L.polyline(latlngs,{color:day.color,weight:5,opacity:.78}).addTo(overviewMap);
+  dayLayers.push(line); latlngs.forEach(x=>allBounds.push(x));
+  day.stops.forEach((s,i)=>L.marker([s.lat,s.lng],{icon:markerIcon(s.icon,day.color)}).addTo(overviewMap).bindPopup(`<b>${day.date} · ${s.name}</b><br>${s.what}`));
+});
+overviewMap.fitBounds(allBounds,{padding:[30,30]});
+document.getElementById('fitAll').onclick=()=>overviewMap.fitBounds(allBounds,{padding:[30,30]});
+
+document.getElementById('legend').innerHTML=days.map(d=>`<span class="legend-item"><i class="legend-dot" style="background:${d.color}"></i>${d.date}</span>`).join('');
+const tabs=document.getElementById('dayTabs');
+const tabPastels=['#dff1ff','#e7f6df','#fff1c9','#ffe3dc','#e8e4ff','#daf4f2','#f8e3ef','#e9eef5'];
+days.forEach((d,i)=>{const b=document.createElement('button');b.className='day-tab'+(i===0?' active':'');b.style.setProperty('--tab-color',d.color);b.style.setProperty('--tab-bg',tabPastels[i%tabPastels.length]);b.style.setProperty('--tab-border',d.color+'55');b.innerHTML=`${d.icon} ${d.date}`;b.onclick=()=>renderDay(i);tabs.appendChild(b)});
+let dayMap;
+function gmapsSearch(q){return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}`}
+function waze(q){return `https://www.waze.com/ul?q=${encodeURIComponent(q)}&navigate=yes`}
+function renderDay(index){
+  const d=days[index]; document.querySelectorAll('.day-tab').forEach((x,i)=>x.classList.toggle('active',i===index));
+  const sec=document.getElementById('daySection'); sec.style.setProperty('--day',d.color);
+  sec.innerHTML=`
+    <div class="day-hero-card" style="--day:${d.color}">
+      <span class="day-badge">${d.icon} ${d.day} · ${d.date}</span>
+      <h2>${d.title}</h2><p class="day-sub">לינה: ${d.sleep}</p>
+      <div class="day-meta"><span>📍 ${d.stops.length} נקודות</span><span>💶 ${d.cost}</span></div>
+    </div>
+    <div class="route-strip" style="--day:${d.color}">${d.stops.map((s,i)=>`<div class="route-stop"><div class="route-num">${i+1}</div><div class="route-name">${s.name}</div></div>`).join('')}</div>
+    <div class="day-layout">
+      <div class="timeline">${d.stops.map(s=>`<article class="stop-card" style="--day:${d.color}"><div><div class="time">${s.time}</div><div class="waze-line">${s.icon}</div></div><div><h3>${s.name}</h3><p>${s.what}</p><div class="waze-line"><strong>Waze:</strong> ${s.waze}</div><div class="stop-meta"><span class="tag">🚗 ${s.drive}</span><span class="tag">⏱️ ${s.stay}</span></div><p><strong>הערה:</strong> ${s.note}</p><div class="btn-row"><a class="small-btn" style="--day:${d.color}" href="${gmapsSearch(s.waze)}" target="_blank" rel="noopener">Google Maps</a><a class="small-btn secondary" href="${waze(s.waze)}" target="_blank" rel="noopener">Waze</a></div></div></article>`).join('')}</div>
+      <aside class="side-stack"><div class="panel"><h3>🗺️ המפה היומית</h3><div id="dayMap" class="map map-day"></div><div class="btn-row"><a class="small-btn" style="--day:${d.color}" target="_blank" rel="noopener" href="${d.maps}">פתח מסלול מלא ב־Google Maps</a></div></div><div class="panel cost-panel"><h3>עלות משוערת ל־4</h3><div class="cost-value">${d.cost}</div></div><div class="panel"><h3>דגשים ליום</h3><ul class="notes-list">${d.notes.map(n=>`<li>${n}</li>`).join('')}</ul></div></aside>
+    </div>`;
+  setTimeout(()=>{
+    if(dayMap) dayMap.remove();
+    dayMap=L.map('dayMap',{zoomControl:true});
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'&copy; OpenStreetMap'}).addTo(dayMap);
+    const pts=d.stops.map(s=>[s.lat,s.lng]); L.polyline(pts,{color:d.color,weight:6,opacity:.85}).addTo(dayMap);
+    d.stops.forEach((s,i)=>L.marker([s.lat,s.lng],{icon:markerIcon(s.icon,d.color)}).addTo(dayMap).bindPopup(`<b>${i+1}. ${s.name}</b><br>${s.what}`));
+    dayMap.fitBounds(pts,{padding:[25,25]});
+  },30);
+  sec.scrollIntoView({behavior:'smooth',block:'start'});
+}
+renderDay(0);
+
+const tripDate=new Date('2026-09-22T12:00:00+03:00');
+function updateCountdown(){const diff=tripDate-new Date();const el=document.getElementById('countdown');if(diff<=0){el.textContent='✈️ הטיול יצא לדרך';return;}const daysLeft=Math.floor(diff/86400000);el.textContent=`⏳ עוד ${daysLeft} ימים לטיול`;}
+updateCountdown();
+
+
+  </script>
 </body>
 </html>
