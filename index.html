@@ -23,7 +23,7 @@
 html{scroll-behavior:smooth}
 body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,"Noto Sans Hebrew",sans-serif;color:var(--ink);background:linear-gradient(#f5fbff,#fff 35%);line-height:1.55}
 a{color:inherit}
-.hero{position:relative;min-height:315px;background:linear-gradient(135deg,#123d62,#1578a5 55%,#4ea5bd);display:flex;align-items:flex-end;overflow:hidden}
+.hero{position:relative;min-height:315px;background:linear-gradient(135deg,#7a3d2a,#c96a3d 52%,#e9a45f);display:flex;align-items:flex-end;overflow:hidden}
 .hero:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 15% 20%,rgba(255,255,255,.25),transparent 26%),radial-gradient(circle at 85% 10%,rgba(255,255,255,.16),transparent 22%),linear-gradient(to top,rgba(3,22,39,.5),transparent 60%)}
 .hero:after{content:"";position:absolute;left:-10%;right:-10%;bottom:-86px;height:180px;background:#f5fbff;border-radius:50% 50% 0 0/100% 100% 0 0}
 .hero-content{position:relative;z-index:2;width:min(1120px,92%);margin:0 auto 76px;color:white;text-align:right}
@@ -32,7 +32,7 @@ h1{font-size:clamp(2.15rem,6vw,4.3rem);margin:.12em 0 .05em;line-height:1.02}
 .hero p{font-size:clamp(1rem,2.4vw,1.3rem);margin:.3rem 0 1.2rem;opacity:.94}
 .hero-pills{display:flex;gap:10px;flex-wrap:wrap}.hero-pills span{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.22);backdrop-filter:blur(8px);padding:8px 13px;border-radius:999px;font-size:.92rem}
 .day-tabs{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);border-bottom:1px solid #dfeaf0;display:flex;gap:8px;overflow-x:auto;padding:10px max(4vw,16px);scrollbar-width:none}.day-tabs::-webkit-scrollbar{display:none}
-.day-tab{flex:0 0 auto;border:2px solid var(--tab-border,#bfd3de);background:var(--tab-bg,#edf5f8);color:#183246;border-radius:16px;padding:9px 14px;font-weight:900;cursor:pointer;transition:.2s;box-shadow:0 2px 8px rgba(24,50,70,.06)}.day-tab:hover{transform:translateY(-1px);filter:brightness(.985)}.day-tab.active{background:var(--tab-bg,#edf5f8);color:#102c40;border-color:var(--tab-color,#0f5b8f);box-shadow:0 5px 16px color-mix(in srgb,var(--tab-color,#0f5b8f) 22%,transparent);outline:2px solid color-mix(in srgb,var(--tab-color,#0f5b8f) 18%,transparent);outline-offset:1px}
+.day-tab{flex:0 0 auto;border:2px solid var(--tab-border,#bfd3de);background:var(--tab-bg,#edf5f8);color:#24313a;border-radius:16px;padding:10px 16px;font-weight:950;cursor:pointer;transition:.2s;box-shadow:0 3px 10px rgba(24,50,70,.10)}.day-tab:hover{transform:translateY(-1px);filter:saturate(1.08)}.day-tab.active{background:var(--tab-bg,#edf5f8);color:#17222a;border-color:var(--tab-color,#0f5b8f);box-shadow:0 7px 18px rgba(40,45,50,.16);outline:3px solid var(--tab-color,#0f5b8f);outline-offset:1px}
 main{width:min(1180px,94%);margin:0 auto;padding:24px 0 60px}
 section{margin:22px 0 42px}.section-title-wrap{display:flex;align-items:end;justify-content:space-between;gap:14px;margin-bottom:14px}.kicker{font-size:.82rem;color:#50809d;font-weight:900;letter-spacing:.08em;text-transform:uppercase}h2{margin:.1rem 0 0;font-size:clamp(1.55rem,4vw,2.4rem)}
 .ghost-btn{border:1px solid #bfd3de;background:#fff;color:#315b73;border-radius:12px;padding:9px 13px;font-weight:800;cursor:pointer}
@@ -43,7 +43,7 @@ section{margin:22px 0 42px}.section-title-wrap{display:flex;align-items:end;just
 .day-layout{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(320px,.85fr);gap:20px;align-items:start}.timeline{display:flex;flex-direction:column;gap:13px}.stop-card{display:grid;grid-template-columns:74px 1fr;gap:14px;background:#fff;border:1px solid #e0ebf0;border-radius:18px;padding:15px;box-shadow:0 7px 20px rgba(20,57,80,.07);position:relative}.stop-card:before{content:"";position:absolute;right:0;top:12px;bottom:12px;width:5px;background:var(--day);border-radius:5px 0 0 5px}.time{font-weight:900;font-size:1.05rem;color:var(--day)}.stop-card h3{margin:0 0 4px;font-size:1.13rem}.stop-card p{margin:.25rem 0;color:#425d6e}.stop-meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:9px}.tag{font-size:.78rem;background:#eef6f8;border:1px solid #dcebef;border-radius:999px;padding:4px 8px;color:#466879}.waze-line{font-size:.82rem;color:#71838e;margin-top:5px}.btn-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.small-btn{display:inline-block;text-decoration:none;background:var(--day,#0f5b8f);color:white;padding:7px 11px;border-radius:10px;font-weight:800;font-size:.82rem}.small-btn.secondary{background:#eaf3f7;color:#315a71;border:1px solid #cfe1e9}
 .side-stack{display:flex;flex-direction:column;gap:15px}.panel{background:#fff;border:1px solid #e0ebf0;border-radius:18px;padding:17px;box-shadow:0 7px 20px rgba(20,57,80,.07)}.panel h3{margin:0 0 8px}.cost-panel{background:linear-gradient(135deg,#fff8df,#fff);border-color:#efd98a}.cost-value{font-size:1.5rem;font-weight:950;color:#a06a00}.notes-list{margin:0;padding-right:1.1rem}.notes-list li{margin:.35rem 0}
 .extras-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.extra-card{display:flex;gap:15px;background:#fff;border:1px solid #e0ebf0;border-radius:18px;padding:18px;box-shadow:0 7px 20px rgba(20,57,80,.07)}.extra-icon{font-size:2rem}.extra-card h3{margin:0 0 5px}.extra-card p{margin:0;color:#506b7a}.mini-meta{font-weight:800;margin-top:8px}
-footer{background:#0d3557;color:#dceaf2;padding:22px max(4vw,20px);text-align:center}
+footer{background:#5b3427;color:#fff4ec;padding:22px max(4vw,20px);text-align:center}
 .leaflet-popup-content{direction:rtl;text-align:right}.marker-emoji{font-size:20px;filter:drop-shadow(0 2px 2px rgba(0,0,0,.25))}
 @media(max-width:850px){.day-layout{grid-template-columns:1fr}.map-overview{height:350px}.map-day{height:320px}.extras-grid{grid-template-columns:1fr}}
 @media(max-width:520px){main{width:96%}.hero{min-height:290px}.hero-content{margin-bottom:70px}.stop-card{grid-template-columns:58px 1fr;padding:13px}.route-stop{min-width:105px}.map-overview{height:310px}.map-day{height:300px}.section-title-wrap{align-items:center}.day-hero-card{padding:18px}}
@@ -60,7 +60,7 @@ footer{background:#0d3557;color:#dceaf2;padding:22px max(4vw,20px);text-align:ce
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <div class="eyebrow">🏔️ המסע שלנו</div>
-      <h1>הונגריה וסלובקיה 2026</h1>
+      <h1>הונגריה וסלובקיה 2026</h1><div style="display:inline-block;margin-top:8px;background:#fff1df;color:#6b3523;border:1px solid rgba(255,255,255,.55);padding:6px 10px;border-radius:999px;font-weight:900;font-size:.82rem">FINAL 09.08.2026 · Day 26 updated</div>
       <p>22–29 בספטמבר 2026 · 4 מבוגרים · רכב שכור</p>
       <div class="hero-pills">
         <span>🏨 Hotel International</span>
@@ -73,7 +73,7 @@ footer{background:#0d3557;color:#dceaf2;padding:22px max(4vw,20px);text-align:ce
   <nav class="day-tabs" id="dayTabs" aria-label="בחירת יום"></nav>
 
   <main>
-    <section style="max-width:1100px;margin:18px auto 0;padding:0 16px"><div style="background:#e9f5ff;border:1px solid #b8ddf4;border-radius:16px;padding:14px 16px;direction:rtl"><strong>איך משתמשים:</strong> פותחים את הקובץ הזה ב-Chrome או Edge. לוחצים על יום, רואים את הנקודות והמפה, ולוחצים על Google Maps או Waze לניווט.</div></section>
+    <section style="max-width:1100px;margin:18px auto 0;padding:0 16px"><div style="background:#fff3e8;border:1px solid #efc3a5;border-radius:16px;padding:14px 16px;direction:rtl"><strong>איך משתמשים:</strong> פותחים את הקובץ הזה ב-Chrome או Edge. לוחצים על יום, רואים את הנקודות והמפה, ולוחצים על Google Maps או Waze לניווט.</div></section>
     <section class="overview-section">
       <div class="section-title-wrap">
         <div>
@@ -124,7 +124,7 @@ footer{background:#0d3557;color:#dceaf2;padding:22px max(4vw,20px);text-align:ce
   </main>
 
   <footer>
-    <strong>טיפ:</strong> לפתוח את האתר פעם אחת עם אינטרנט לפני הנסיעה. המידע נשמר בדפדפן, אך המפה והניווט דורשים חיבור.<br><small>גרסה סופית: 08.08.2026 · יום 26 כולל Vrbické pleso + Slide Park Priehyba.</small>
+    <strong>טיפ:</strong> לפתוח את האתר פעם אחת עם אינטרנט לפני הנסיעה. המידע נשמר בדפדפן, אך המפה והניווט דורשים חיבור.<br><small>גרסה סופית: 09.08.2026 · יום 26 כולל Vrbické pleso + Slide Park Priehyba.</small>
   </footer>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin="" onerror="document.getElementById('offlineNote').style.display='block'"></script>
@@ -183,7 +183,8 @@ const days = [
     maps:'https://www.google.com/maps/dir/Hotel+International,+Ve%C4%BEk%C3%A1+Lomnica/Jasn%C3%A1+Biela+P%C3%BA%C5%A5/Vrbick%C3%A9+pleso/Priehyba,+Jasn%C3%A1/Chopok/Dem%C3%A4novsk%C3%A1+jasky%C5%88a+slobody/Liptovsk%C3%A1+Mara,+Liptovsk%C3%BD+Trnovec/Hrabovo,+Ru%C5%BEomberok/Hotel+International,+Ve%C4%BEk%C3%A1+Lomnica',
     notes:['Vrbické pleso ו־Slide Park Priehyba משתלבים במסלול העלייה ל־Chopok בלי נסיעה מיותרת.','Slide Park Priehyba חדש בקיץ 2026; לבדוק סמוך לנסיעה שהוא פעיל.','Hrabovo אופציונלי בלבד: מחליטים אחרי Liptovská Mara לפי השעה, מזג האוויר והכוח.'],
     stops:[
-      {time:'07:30',name:'Jasná – Biela Púť',waze:'Jasná Biela Púť',drive:'1:00–1:20 ש׳',stay:'20 דק׳',what:'הגעה למרכז הרכבלים, חניה והתארגנות.',note:'לצאת מוקדם ולבדוק בבוקר רוח, ראות ופעילות רכבלים.',lat:48.9719,lng:19.5847,icon:'🚠'},
+      {time:'07:15',name:'Hotel International – יציאה',waze:'Hotel International, Veľká Lomnica',drive:'—',stay:'יציאה',what:'יציאה מהמלון לאחר ארוחת הבוקר לכיוון הטטרה הנמוכים.',note:'לבדוק בבוקר רוח, ראות ופעילות רכבלים ב־Jasná.',lat:49.1163,lng:20.3482,icon:'🏨'},
+      {time:'08:30',name:'Jasná – Biela Púť',waze:'Jasná Biela Púť',drive:'1:00–1:20 ש׳',stay:'20 דק׳',what:'הגעה למרכז הרכבלים, חניה והתארגנות.',note:'לצאת מוקדם ולבדוק בבוקר רוח, ראות ופעילות רכבלים.',lat:48.9719,lng:19.5847,icon:'🚠'},
       {time:'08:50',name:'Vrbické pleso',waze:'Vrbické pleso, Jasná',drive:'5–10 דק׳ / הליכה',stay:'30–40 דק׳',what:'סיבוב קצר סביב אגם הררי בתוך היער, תצפיות וצילומים.',note:'האגם ממש ליד Jasná ולכן זו תוספת יפה בלי נסיעה מיותרת.',lat:48.9706,lng:19.5797,icon:'🌲'},
       {time:'09:35',name:'Slide Park Jasná – Priehyba',waze:'Priehyba, Jasná',drive:'רכבל A6',stay:'30–45 דק׳',what:'פארק המגלשות החדש ב־Priehyba עם 7 מגלשות יבשות; עצירה בדרך ל־Chopok.',note:'הכניסה לפארק חינם; הרכבל לפי הכרטיס. לבדוק סמוך לנסיעה שהפעילות פתוחה.',lat:48.9587,lng:19.5867,icon:'🛝'},
       {time:'10:30',name:'Chopok',waze:'Chopok',drive:'רכבלים',stay:'2:00–2:30 ש׳',what:'המשך ברכבל לפסגה בגובה כ־2,024 מ׳, תצפית פנורמית וקפה בפסגה.',note:'להצטייד במעיל; לשים לב לזמן כדי להספיק למערה.',lat:48.9435,lng:19.5913,icon:'🏔️'},
@@ -246,7 +247,7 @@ document.getElementById('fitAll').onclick=()=>overviewMap.fitBounds(allBounds,{p
 
 document.getElementById('legend').innerHTML=days.map(d=>`<span class="legend-item"><i class="legend-dot" style="background:${d.color}"></i>${d.date}</span>`).join('');
 const tabs=document.getElementById('dayTabs');
-const tabPastels=['#dff1ff','#e7f6df','#fff1c9','#ffe3dc','#e8e4ff','#daf4f2','#f8e3ef','#e9eef5'];
+const tabPastels=['#FFE1D6','#FFF0B8','#DDF4D7','#D8F1F3','#DCE8FF','#E8DDF8','#FFE0EC','#E7E7E7'];
 days.forEach((d,i)=>{const b=document.createElement('button');b.className='day-tab'+(i===0?' active':'');b.style.setProperty('--tab-color',d.color);b.style.setProperty('--tab-bg',tabPastels[i%tabPastels.length]);b.style.setProperty('--tab-border',d.color+'55');b.innerHTML=`${d.icon} ${d.date}`;b.onclick=()=>renderDay(i);tabs.appendChild(b)});
 let dayMap;
 function gmapsSearch(q){return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}`}
@@ -283,5 +284,21 @@ updateCountdown();
 
 
   </script>
+
+<script>
+// Version 2026-08-09: remove any old offline cache/service worker from earlier builds.
+(async()=>{
+  try {
+    if ('serviceWorker' in navigator) {
+      const regs = await navigator.serviceWorker.getRegistrations();
+      for (const r of regs) await r.unregister();
+    }
+    if ('caches' in window) {
+      const keys = await caches.keys();
+      for (const k of keys) await caches.delete(k);
+    }
+  } catch(e) { console.log('cache cleanup skipped', e); }
+})();
+</script>
 </body>
 </html>
