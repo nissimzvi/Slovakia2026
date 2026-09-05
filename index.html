@@ -57,6 +57,37 @@ footer{background:#5b3427;color:#fff4ec;padding:22px max(4vw,20px);text-align:ce
 
 
 .alt-under-wrap{margin:18px 0 4px}.alt-under-title{font-weight:950;margin:0 0 10px;color:#5f4a00}.alt-under-grid{display:grid;gap:10px}.alt-under-card{background:#fff8d8;border:1px solid #ecd77e;border-radius:16px;padding:13px 14px;box-shadow:0 5px 14px rgba(86,69,0,.07)}.alt-under-card h4{margin:0 0 5px}.alt-under-card p{margin:4px 0;color:#655a34}.stop-cost{margin:8px 0 2px;background:#eef8f1;border:1px solid #cde6d4;border-radius:10px;padding:7px 9px;font-size:.82rem;font-weight:850;color:#245a35}
+/* FINAL mobile responsive fix 05.09.2026 */
+@media(max-width:850px){
+  .day-layout.single-map{grid-template-columns:1fr !important;}
+  .side-stack{width:100%;}
+}
+@media(max-width:600px){
+  main{width:94%;}
+  .day-hero-card{padding:16px;}
+  .day-meta{display:grid;grid-template-columns:1fr;gap:8px;}
+  .day-meta span{width:100%;}
+  .stop-card{display:block !important;padding:14px 14px 15px;}
+  .stop-card>div:first-child{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px;padding-left:4px;}
+  .stop-card>div:first-child .waze-line{margin:0;font-size:1.15rem;}
+  .stop-card>div:nth-child(2){min-width:0;width:100%;}
+  .stop-card h3,.stop-card p,.waze-line,.parking-box,.stop-cost{overflow-wrap:anywhere;word-break:normal;}
+  .stop-meta{display:grid;grid-template-columns:1fr 1fr;gap:7px;}
+  .tag{display:block;text-align:center;min-width:0;padding:7px 6px;}
+  .btn-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;width:100%;}
+  .small-btn{display:flex;align-items:center;justify-content:center;width:100%;min-width:0;text-align:center;line-height:1.25;padding:10px 8px;white-space:normal;}
+  .day-map-top .btn-row{grid-template-columns:1fr;}
+  .parking-links{display:grid;grid-template-columns:1fr 1fr;gap:6px;}
+  .parking-links a{text-align:center;}
+  .day-nav{gap:7px;}
+  .nav-btn{padding:9px 10px;font-size:.82rem;flex:1;}
+  .route-strip{margin-left:-3%;margin-right:-3%;padding-inline:3%;}
+  .route-stop{min-width:112px;}
+}
+@media(max-width:380px){
+  .stop-meta,.btn-row,.parking-links{grid-template-columns:1fr;}
+}
+
 </style>
   <title>מסלול הונגריה וסלובקיה 2026</title>
   <meta property="og:title" content="מסלול הונגריה וסלובקיה 2026" />
@@ -69,7 +100,7 @@ footer{background:#5b3427;color:#fff4ec;padding:22px max(4vw,20px);text-align:ce
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <div class="eyebrow">🏔️ המסע שלנו</div>
-      <h1>הונגריה וסלובקיה 2026</h1><div style="display:inline-block;margin-top:8px;background:#fff1df;color:#6b3523;border:1px solid rgba(255,255,255,.55);padding:6px 10px;border-radius:999px;font-weight:900;font-size:.82rem">FINAL 24.08.2026 · רובע יהודי · ניווט רכב/הליכה · מסמכים מלאים · חלופות</div>
+      <h1>הונגריה וסלובקיה 2026</h1><div style="display:inline-block;margin-top:8px;background:#fff1df;color:#6b3523;border:1px solid rgba(255,255,255,.55);padding:6px 10px;border-radius:999px;font-weight:900;font-size:.82rem">FINAL 05.09.2026 · רספונסיבי לנייד · HUF+EUR · ניווט רכב/הליכה · מסמכים · חלופות</div>
       <p>22–29 בספטמבר 2026 · 4 מבוגרים · רכב שכור</p>
       <div class="hero-pills">
         <span>🏨 Hotel International</span>
@@ -203,7 +234,18 @@ function inferParking(s){
   for(const [k,v] of Object.entries(parkingOptions)){if(text.includes(k)) return v;}
   return null;
 }
-function parkingHtml(p){if(!p)return '';let links=[];if(p.free)links.push(`<a target="_blank" rel="noopener" href="${waze(p.free)}">🅿️ חינם – Waze</a>`);if(p.paid)links.push(`<a target="_blank" rel="noopener" href="${waze(p.paid)}">🅿️ בתשלום/זול – Waze</a>`);return `<div class="parking-box"><strong>חניה:</strong> ${p.note}<div class="parking-links">${links.join('')}</div></div>`}
+const HUF_TO_EUR=0.00277277; // mid-market rate checked 05.09.2026
+function moneyText(value){
+  if(value===null||value===undefined)return value;
+  return String(value).replace(/(\d[\d,.]*)\s*HUF(?!\s*\(≈\s*€)/g,(m,num)=>{
+    const n=parseFloat(num.replace(/,/g,''));
+    if(!Number.isFinite(n))return m;
+    const eur=n*HUF_TO_EUR;
+    const shown=eur>=10?eur.toFixed(0):eur.toFixed(1);
+    return `${num} HUF (≈ €${shown})`;
+  });
+}
+function parkingHtml(p){if(!p)return '';let links=[];if(p.free)links.push(`<a target="_blank" rel="noopener" href="${waze(p.free)}">🅿️ חינם – Waze</a>`);if(p.paid)links.push(`<a target="_blank" rel="noopener" href="${waze(p.paid)}">🅿️ בתשלום/זול – Waze</a>`);return `<div class="parking-box"><strong>חניה:</strong> ${moneyText(p.note)}<div class="parking-links">${links.join('')}</div></div>`}
 function renderDay(index){currentIsAlt=false;renderDayObject(days[index],index,false)}
 function renderAlternative(altId){const a=alternatives.find(x=>x.id===altId);if(!a)return;currentIsAlt=true;const idx=days.findIndex(d=>d.date===a.date);renderDayObject(a,idx,true)}
 function renderDayObject(d,index,isAlt){
@@ -214,13 +256,13 @@ function renderDayObject(d,index,isAlt){
   const prev=index>0?`<button class="nav-btn" onclick="renderDay(${index-1})">→ היום הקודם · ${days[index-1].date}</button>`:'<span></span>';
   const next=index<days.length-1?`<button class="nav-btn" onclick="renderDay(${index+1})">היום הבא · ${days[index+1].date} ←</button>`:'<span></span>';
   sec.innerHTML=`
-    <div class="day-hero-card" style="--day:${d.color}"><span class="day-badge">${d.icon} ${d.day} · ${d.date}</span>${isAlt?'<span class="alt-badge">חלופה</span>':''}<h2>${d.title}</h2><p class="day-sub">לינה: ${d.sleep}</p><div class="day-meta"><span>📍 ${d.stops.length} נקודות</span><span>💶 ${d.cost}</span></div>${altButtons}</div>
+    <div class="day-hero-card" style="--day:${d.color}"><span class="day-badge">${d.icon} ${d.day} · ${d.date}</span>${isAlt?'<span class="alt-badge">חלופה</span>':''}<h2>${d.title}</h2><p class="day-sub">לינה: ${d.sleep}</p><div class="day-meta"><span>📍 ${d.stops.length} נקודות</span><span>💶 ${moneyText(d.cost)}</span></div>${altButtons}</div>
     <div class="day-nav">${prev}${next}</div>
     <div class="day-map-top"><h3>🗺️ מסלול היום במפה · רכב / הליכה מסומנים בכל תחנה</h3><div id="dayMap" class="map map-day"></div><div class="btn-row"><a class="small-btn" style="--day:${d.color}" target="_blank" rel="noopener" href="${d.maps}">פתח מסלול מלא ב־Google Maps</a></div></div>
     <div class="route-strip" style="--day:${d.color}">${d.stops.map((s,i)=>`<div class="route-stop"><div class="route-num">${i+1}</div><div class="route-name">${s.name}</div><div style="font-size:.74rem;margin-top:4px;color:#5f7280">${moveType(s).icon} ${moveType(s).label}</div></div>`).join('')}</div>
-    <div class="day-layout single-map"><div class="timeline">${d.stops.map((s,i)=>{const p=s.parking||inferParking(s);const mv=moveType(s);const prev=i?d.stops[i-1]:null;return `<article class="stop-card" style="--day:${d.color}"><div><div class="time">${s.time}</div><div class="waze-line">${s.icon}</div></div><div><h3>${s.name}</h3><p>${s.what}</p><div class="waze-line"><strong>יעד ניווט:</strong> ${s.waze}</div><div class="stop-meta"><span class="tag">${mv.icon} <strong>${mv.label}</strong> · ${s.drive}</span><span class="tag">⏱️ ${s.stay}</span></div><p><strong>הערה:</strong> ${s.note}</p><div class="stop-cost">💶 עלות ל־4: ${s.cost4||'—'}</div>${parkingHtml(p)}<div class="btn-row"><a class="small-btn" style="--day:${d.color}" href="${gmapsFrom(prev,s)}" target="_blank" rel="noopener">Google Maps · ${mv.label} · מהנקודה הקודמת</a><a class="small-btn secondary" href="${waze(s.waze,s.lat,s.lng)}" target="_blank" rel="noopener">Waze · יעד</a></div></div></article>`}).join('')}</div>
-      <aside class="side-stack"><div class="panel cost-panel"><h3>עלות משוערת ל־4</h3><div class="cost-value">${d.cost}</div></div><div class="panel"><h3>דגשים ליום</h3><ul class="notes-list">${d.notes.map(n=>`<li>${n}</li>`).join('')}</ul></div></aside></div>
-    ${(!isAlt&&alts.length)?`<div class="alt-under-wrap"><div class="alt-under-title">💡 חלופות ליום הזה</div><div class="alt-under-grid">${alts.map(a=>`<div class="alt-under-card"><h4>חלופה · ${a.label}</h4><p><strong>${a.title}</strong></p><p>💶 ${a.cost}</p><button class="alt-btn" style="background:#fff2b8" onclick="renderAlternative('${a.id}')">פתח חלופה מלאה</button></div>`).join('')}</div></div>`:''}
+    <div class="day-layout single-map"><div class="timeline">${d.stops.map((s,i)=>{const p=s.parking||inferParking(s);const mv=moveType(s);const prev=i?d.stops[i-1]:null;return `<article class="stop-card" style="--day:${d.color}"><div><div class="time">${s.time}</div><div class="waze-line">${s.icon}</div></div><div><h3>${s.name}</h3><p>${s.what}</p><div class="waze-line"><strong>יעד ניווט:</strong> ${s.waze}</div><div class="stop-meta"><span class="tag">${mv.icon} <strong>${mv.label}</strong> · ${s.drive}</span><span class="tag">⏱️ ${s.stay}</span></div><p><strong>הערה:</strong> ${moneyText(s.note)}</p><div class="stop-cost">💶 עלות ל־4: ${moneyText(s.cost4||'—')}</div>${parkingHtml(p)}<div class="btn-row"><a class="small-btn" style="--day:${d.color}" href="${gmapsFrom(prev,s)}" target="_blank" rel="noopener">Google Maps · ${mv.label} · מהנקודה הקודמת</a><a class="small-btn secondary" href="${waze(s.waze,s.lat,s.lng)}" target="_blank" rel="noopener">Waze · יעד</a></div></div></article>`}).join('')}</div>
+      <aside class="side-stack"><div class="panel cost-panel"><h3>עלות משוערת ל־4</h3><div class="cost-value">${moneyText(d.cost)}</div><div style="font-size:.74rem;color:#816513;margin-top:6px">המרת HUF לאירו משוערת לפי שער 5.9.2026</div></div><div class="panel"><h3>דגשים ליום</h3><ul class="notes-list">${d.notes.map(n=>`<li>${n}</li>`).join('')}</ul></div></aside></div>
+    ${(!isAlt&&alts.length)?`<div class="alt-under-wrap"><div class="alt-under-title">💡 חלופות ליום הזה</div><div class="alt-under-grid">${alts.map(a=>`<div class="alt-under-card"><h4>חלופה · ${a.label}</h4><p><strong>${a.title}</strong></p><p>💶 ${moneyText(a.cost)}</p><button class="alt-btn" style="background:#fff2b8" onclick="renderAlternative('${a.id}')">פתח חלופה מלאה</button></div>`).join('')}</div></div>`:''}
     <div class="day-nav">${prev}${next}</div>`;
   setTimeout(()=>{if(dayMap)dayMap.remove();dayMap=L.map('dayMap',{zoomControl:true});L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'&copy; OpenStreetMap'}).addTo(dayMap);const pts=d.stops.map(s=>[s.lat,s.lng]);L.polyline(pts,{color:d.color,weight:6,opacity:.85}).addTo(dayMap);d.stops.forEach((s,i)=>L.marker([s.lat,s.lng],{icon:markerIcon(s.icon,d.color)}).addTo(dayMap).bindPopup(`<b>${i+1}. ${s.name}</b><br>${s.what}`));dayMap.fitBounds(pts,{padding:[25,25]});},30);
   sec.scrollIntoView({behavior:'smooth',block:'start'});
