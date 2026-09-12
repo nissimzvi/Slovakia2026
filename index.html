@@ -100,7 +100,7 @@ footer{background:#5b3427;color:#fff4ec;padding:22px max(4vw,20px);text-align:ce
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <div class="eyebrow">🏔️ המסע שלנו</div>
-      <h1>הונגריה וסלובקיה 2026</h1><div style="display:inline-block;margin-top:8px;background:#fff1df;color:#6b3523;border:1px solid rgba(255,255,255,.55);padding:6px 10px;border-radius:999px;font-weight:900;font-size:.82rem">FINAL 05.09.2026 · רספונסיבי לנייד · HUF+EUR · ניווט רכב/הליכה · מסמכים · חלופות</div>
+      <h1>הונגריה וסלובקיה 2026</h1><div style="display:inline-block;margin-top:8px;background:#fff1df;color:#6b3523;border:1px solid rgba(255,255,255,.55);padding:6px 10px;border-radius:999px;font-weight:900;font-size:.82rem">FINAL 12.09.2026 · הגרסה האחרונה · רספונסיבי לנייד · HUF+EUR · ניווט רכב/הליכה · מסמכים · חלופות</div>
       <p>22–29 בספטמבר 2026 · 4 מבוגרים · רכב שכור</p>
       <div class="hero-pills">
         <span>🏨 Hotel International</span>
@@ -120,6 +120,10 @@ footer{background:#5b3427;color:#fff4ec;padding:22px max(4vw,20px);text-align:ce
         <a class="doc-link" href="car_rental_voucher.pdf" target="_blank" rel="noopener"><span class="doc-icon">🚗</span><span><div class="doc-title">ואוצ׳ר השכרת רכב</div><div class="doc-sub">Klass Wagen · BUD-235912214888455</div></span></a>
         <a class="doc-link" href="driving_license_nissim_zvi.pdf" target="_blank" rel="noopener"><span class="doc-icon">🪪</span><span><div class="doc-title">רישיון נהיגה – ניסים צבי</div><div class="doc-sub">PDF · צד קדמי ואחורי</div></span></a>
         <a class="doc-link" href="driving_license_elad_zvi.pdf" target="_blank" rel="noopener"><span class="doc-icon">🪪</span><span><div class="doc-title">רישיון נהיגה – אלעד צבי</div><div class="doc-sub">PDF · צד קדמי ואחורי</div></span></a>
+      </div>
+      <h3 style="margin:18px 0 8px">📊 מסלול הטיול – Excel</h3>
+      <div class="docs-grid">
+        <a class="doc-link" href="SLOVAKIA_2026_FINAL_LINKS_FIXED.xlsx" target="_blank" rel="noopener"><span class="doc-icon">📊</span><span><div class="doc-title">האקסל הסופי של המסלול</div><div class="doc-sub">הגרסה האחרונה · כולל Waze + Google Maps + חלופות</div></span></a>
       </div>
       <h3 style="margin:18px 0 8px">🛡️ ביטוח נסיעות – קרן ומאי</h3>
       <div class="docs-grid">
@@ -189,7 +193,7 @@ footer{background:#5b3427;color:#fff4ec;padding:22px max(4vw,20px);text-align:ce
   </main>
 
   <footer>
-    <strong>טיפ:</strong> לפתוח את האתר פעם אחת עם אינטרנט לפני הנסיעה. המידע נשמר בדפדפן, אך המפה והניווט דורשים חיבור.<br><small>גרסה סופית: 05.09.2026 · מפות וניווט עודכנו; יום 22 רובע יהודי; יום 26 כולל Vrbické pleso + Slide Park Priehyba.</small>
+    <strong>טיפ:</strong> לפתוח את האתר פעם אחת עם אינטרנט לפני הנסיעה. המידע נשמר בדפדפן, אך המפה והניווט דורשים חיבור.<br><small>גרסה אחרונה: 12.09.2026 · מפות וניווט ללא שינוי; נוסף Excel למסמכים ועלויות/הערת Senior.</small>
   </footer>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin="" onerror="document.getElementById('offlineNote').style.display='block'"></script>
@@ -261,8 +265,8 @@ function renderDayObject(d,index,isAlt){
     <div class="day-map-top"><h3>🗺️ מסלול היום במפה · רכב / הליכה מסומנים בכל תחנה</h3><div id="dayMap" class="map map-day"></div><div class="btn-row"><a class="small-btn" style="--day:${d.color}" target="_blank" rel="noopener" href="${d.maps}">פתח מסלול מלא ב־Google Maps</a></div></div>
     <div class="route-strip" style="--day:${d.color}">${d.stops.map((s,i)=>`<div class="route-stop"><div class="route-num">${i+1}</div><div class="route-name">${s.name}</div><div style="font-size:.74rem;margin-top:4px;color:#5f7280">${moveType(s).icon} ${moveType(s).label}</div></div>`).join('')}</div>
     <div class="day-layout single-map"><div class="timeline">${d.stops.map((s,i)=>{const p=s.parking||inferParking(s);const mv=moveType(s);const prev=i?d.stops[i-1]:null;return `<article class="stop-card" style="--day:${d.color}"><div><div class="time">${s.time}</div><div class="waze-line">${s.icon}</div></div><div><h3>${s.name}</h3><p>${s.what}</p><div class="waze-line"><strong>יעד ניווט:</strong> ${s.waze}</div><div class="stop-meta"><span class="tag">${mv.icon} <strong>${mv.label}</strong> · ${s.drive}</span><span class="tag">⏱️ ${s.stay}</span></div><p><strong>הערה:</strong> ${moneyText(s.note)}</p><div class="stop-cost">💶 עלות ל־4: ${moneyText(s.cost4||'—')}</div>${parkingHtml(p)}<div class="btn-row"><a class="small-btn" style="--day:${d.color}" href="${gmapsFrom(prev,s)}" target="_blank" rel="noopener">Google Maps · ${mv.label} · מהנקודה הקודמת</a><a class="small-btn secondary" href="${waze(s.waze,s.lat,s.lng)}" target="_blank" rel="noopener">Waze · יעד</a></div></div></article>`}).join('')}</div>
-      <aside class="side-stack"><div class="panel cost-panel"><h3>עלות משוערת ל־4</h3><div class="cost-value">${moneyText(d.cost)}</div><div style="font-size:.74rem;color:#816513;margin-top:6px">המרת HUF לאירו משוערת לפי שער 5.9.2026</div></div><div class="panel"><h3>דגשים ליום</h3><ul class="notes-list">${d.notes.map(n=>`<li>${n}</li>`).join('')}</ul></div></aside></div>
-    ${(!isAlt&&alts.length)?`<div class="alt-under-wrap"><div class="alt-under-title">💡 חלופות ליום הזה</div><div class="alt-under-grid">${alts.map(a=>`<div class="alt-under-card"><h4>חלופה · ${a.label}</h4><p><strong>${a.title}</strong></p><p>💶 ${moneyText(a.cost)}</p><button class="alt-btn" style="background:#fff2b8" onclick="renderAlternative('${a.id}')">פתח חלופה מלאה</button></div>`).join('')}</div></div>`:''}
+      <aside class="side-stack"><div class="panel cost-panel"><h3>עלות משוערת ל־4</h3><div class="cost-value">${moneyText(d.cost)}</div><div style="font-size:.74rem;color:#816513;margin-top:6px">המרת HUF לאירו משוערת לפי שער 5.9.2026</div><div style="font-size:.72rem;color:#816513;margin-top:4px">* ניסים בן 64: בחלק מהאתרים/רכבלים קיימת הנחת Senior 60+; בעת הרכישה לבחור Senior כאשר האפשרות קיימת.</div></div><div class="panel"><h3>דגשים ליום</h3><ul class="notes-list">${d.notes.map(n=>`<li>${n}</li>`).join('')}</ul></div></aside></div>
+    ${(!isAlt&&alts.length)?`<div class="alt-under-wrap"><div class="alt-under-title">💡 חלופות ליום הזה</div><div class="alt-under-grid">${alts.map(a=>`<div class="alt-under-card"><h4>חלופה · ${a.label}</h4><p><strong>${a.title}</strong></p><p>💶 ${moneyText(a.cost)}</p><p style="font-size:.72rem;color:#7b6b33">* ניסים בן 64: לבדוק תעריף Senior 60+ אם קיים.</p><button class="alt-btn" style="background:#fff2b8" onclick="renderAlternative('${a.id}')">פתח חלופה מלאה</button></div>`).join('')}</div></div>`:''}
     <div class="day-nav">${prev}${next}</div>`;
   setTimeout(()=>{if(dayMap)dayMap.remove();dayMap=L.map('dayMap',{zoomControl:true});L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'&copy; OpenStreetMap'}).addTo(dayMap);const pts=d.stops.map(s=>[s.lat,s.lng]);L.polyline(pts,{color:d.color,weight:6,opacity:.85}).addTo(dayMap);d.stops.forEach((s,i)=>L.marker([s.lat,s.lng],{icon:markerIcon(s.icon,d.color)}).addTo(dayMap).bindPopup(`<b>${i+1}. ${s.name}</b><br>${s.what}`));dayMap.fitBounds(pts,{padding:[25,25]});},30);
   sec.scrollIntoView({behavior:'smooth',block:'start'});
